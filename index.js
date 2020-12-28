@@ -5,11 +5,13 @@ const path = require('path');
 const compression = require('compression');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
-const app = express();
+const cors = require('cors');
+
 const PORT = process.env.PORT || 3001;
-//const dev = app.get('env') !== 'production';
 const adminEmail = process.env.ADMIN_EMAIL;
 
+const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 /*
