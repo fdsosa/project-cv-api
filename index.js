@@ -14,18 +14,6 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-/*
-if (dev) {
-    app.disable('x-powered-by');
-    app.use(compression());
-    app.use(morgan('common'));
-
-    app.use(express.static(path.resolve(__dirname, 'build')));
-
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-    })
-}*/
 
 app.post('/api/form', (req, res) => {
     console.log(req.body);
@@ -47,7 +35,7 @@ app.post('/api/form', (req, res) => {
         auth: {
             type: "login",
             user: adminEmail,
-            pass: 'papla2010'
+            pass: process.env.EMAIL_PASSWORD
         },
         tls: {
             // do not fail on invalid certs
@@ -88,8 +76,6 @@ app.post('/api/form', (req, res) => {
 app.get('/*', function(req, res){ 
   res.send('CV Backend'); 
 }); 
-
-
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
