@@ -85,6 +85,11 @@ app.post('/api/form', (req, res) => {
     return 'OK';
 });
 
+app.get('/*', function(req, res){ 
+  res.send('CV Backend'); 
+}); 
+
+
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
